@@ -4,7 +4,7 @@ import { AiOutlineCreditCard, AiOutlineFacebook, AiOutlineInstagram, AiOutlineMa
 
 function Footer() {
     return (
-        <div className='Footer'>
+        <footer className='Footer'>
             <div className="container">
                 <div className="content">
                     <div className="footer-left">
@@ -45,7 +45,7 @@ function Footer() {
                     <p>Copyright {new Date().getFullYear()} , <strong>POSTERZ.</strong></p>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
 

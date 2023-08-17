@@ -1,8 +1,9 @@
 import React from 'react'
+import './Categories.scss'
 
 function Categories() {
     return (
-        <div>Categories</div>
+        <div className='Categories'></div>
     )
 }
 
