@@ -1,22 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import dummyImg from '../../assets/mtp22d028-02.webp'
 import './ProductDetail.scss';
+import { useParams } from 'react-router-dom';
+import { axiosClient } from '../../utils/axiosClient';
+import Loader from '../../components/loader/Loader'
 
 function ProductDetail() {
+
+    const params = useParams();
+    const [product, setProduct] = useState(null);
+    async function fetchData() {
+        const productResponse = await axiosClient.get(`/products?filters[key][$eq]=${params.productId}&populate=image`);
+        console.log('productResponse', productResponse)
+        if (productResponse.data.data.length > 0) {
+            setProduct(productResponse.data.data[0]);
+        }
+    }
+    useEffect(() => {
+        setProduct(null);
+        fetchData();
+    }, [params])
+
+    if (!product) {
+        return <Loader />;
+    }
+
     return (
         <div className='ProductDetail'>
             <div className="container">
                 <div className="product-layout">
                     <div className="product-img center">
-                        <img src={dummyImg} alt="product img" />
+                        <img src={`http://localhost:1337${product?.attributes?.image.data.attributes.url}`} alt="product img" />
                     </div>
                     <div className="product-info">
                         <h1 className="heading">
-                            This is a title , wall poster
+                            {product?.attributes.title}
                         </h1>
-                        <h3 className="price">$ 549</h3>
+                        <h3 className="price">${product?.attributes?.price}</h3>
                         <p className="description">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias architecto facere odio enim inventore velit eius asperiores rem illum iure suscipit aperiam sunt nesciunt, consequuntur nam voluptate non quam dignissimos.
+                            {product?.attributes?.desc}
                         </p>
                         <div className="cart-options">
                             <div className="quantity-selector">
