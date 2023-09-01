@@ -11,7 +11,7 @@ function Home() {
     const [topProducts, setTopProducts] = useState(null);
     async function fetchData() {
         const categoryResponse = await axiosClient.get(`/categories?populate=image`);
-        const topProductsResponse = await axiosClient.get(`/products?filter[isTopPick][$eq]=true&populate=image`);
+        const topProductsResponse = await axiosClient.get(`/products?filters[isTopPick][$eq]=true&populate=image`);
         setCategories(categoryResponse.data.data);
         setTopProducts(topProductsResponse.data.data);
     }

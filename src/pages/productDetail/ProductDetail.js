@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import dummyImg from '../../assets/mtp22d028-02.webp'
 import './ProductDetail.scss';
 import { useParams } from 'react-router-dom';
 import { axiosClient } from '../../utils/axiosClient';
