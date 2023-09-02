@@ -1,30 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import './Categories.scss'
+import './Collection.scss'
 import Product from '../../components/product/Product'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { axiosClient } from '../../utils/axiosClient';
 
-function Categories() {
+function Collection() {
 
     const navigate = useNavigate();
     const params = useParams();
     const [categoryId, setCategoryId] = useState('');
+    const [products, setProducts] = useState([]);
+    const categories = useSelector(state => state.categoryReducer.categories);
 
-    const categoryList = [{
-        id: 'comics',
-        value: 'Comics',
+    const sortOptions = [{
+        value: 'price - Low To High',
+        sort: 'price'
     }, {
-        id: 'tv-shows',
-        value: 'Tv-Shows',
-    }, {
-        id: 'sports',
-        value: 'Sports',
-    }]
+        value: 'Newest First',
+        sort: 'createdAt'
+    }];
+
+    const [sortBy, setSortBy] = useState(sortOptions[0].sort);
+
+    async function fetchProducts() {
+        const products = await axiosClient.get(`/products?populate=image&filters[category][key][$eq]=${params.categoryId}&sort=${sortBy}`);
+        setProducts(products.data.data);
+    }
+
 
     useEffect(() => {
 
         setCategoryId(params.categoryId);
+        fetchProducts();
 
-    }, [params])
+    }, [params, sortBy])
 
     function updateCategory(e) {
         navigate(`/category/${e.target.value}`)
@@ -41,10 +51,8 @@ function Categories() {
                     <div className="sort-by">
                         <div className="sort-by-wrapper">
                             <h3 className='sort-by-text'>Sort By</h3>
-                            <select className='select-sort-by' name="sort-by" id="sort-by">
-                                <option value="relavance">Relavance</option>
-                                <option value="newest-first">Newest First</option>
-                                <option value="price-lth">Price - Low To HIgh</option>
+                            <select className='select-sort-by' name="sort-by" id="sort-by" onChange={(e) => setSortBy(e.target.value)}>
+                                {sortOptions.map((item) => <option value={item.sort} key={item.sort}>{item.value}</option>)}
                             </select>
                         </div>
                     </div>
@@ -52,26 +60,21 @@ function Categories() {
                 <div className="content">
                     <div className="filter-box">
                         <h3>Category</h3>
-                        {categoryList.map(item => (
+                        {categories?.map(item => (
                             <div key={item.id} className="filter-radio">
                                 <input
                                     type="radio"
                                     name='category'
-                                    value={item.id}
+                                    value={item.attributes.key}
                                     id={item.id}
                                     onChange={updateCategory}
-                                    checked={item.id === categoryId}
+                                    checked={item.attributes.key === categoryId}
                                 />
-                                <label htmlFor={item.id}>{item.value}</label>
+                                <label htmlFor={item.id}>{item.attributes.title}</label>
                             </div>))}
                     </div>
                     <div className="product-box">
-                        <Product />
-                        <Product />
-                        <Product />
-                        <Product />
-                        <Product />
-                        <Product />
+                        {products?.map((product) => <Product key={product.id} product={product} />)}
                     </div>
                 </div>
             </div>
@@ -79,4 +82,4 @@ function Categories() {
     )
 }
 
-export default Categories
+export default Collection

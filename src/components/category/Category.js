@@ -3,7 +3,6 @@ import './Category.scss';
 import { useNavigate } from 'react-router-dom';
 
 function Category({ category }) {
-    console.log('category', category)
     const navigate = useNavigate();
     return (
         <div className='Category' style={{ backgroundImage: `url(http://localhost:1337${category?.attributes?.image.data.attributes.url})` }} onClick={() => navigate(`category/${category?.attributes?.key}`)}>

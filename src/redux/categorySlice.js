@@ -4,7 +4,6 @@ import { axiosClient } from '../utils/axiosClient'
 export const fetchCategories = createAsyncThunk('api/categories', async () => {
     try {
         const response = await axiosClient.get('/categories?populate=image');
-        console.log('response', response.data.data);
         return response.data.data;
     } catch (error) {
         return Promise.reject(error);

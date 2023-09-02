@@ -9,7 +9,6 @@ function Navbar() {
 
    const [openCart, setOpenCart] = useState(false);
    const categories = useSelector(state => state.categoryReducer.categories);
-   console.log('categories', categories)
    return (
       <>
          <nav className='Navbar'>
