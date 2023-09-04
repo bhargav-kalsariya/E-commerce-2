@@ -11,7 +11,7 @@ function CartItem({ cart }) {
         <>
             <div className="CartItem">
                 <div className='item-img'>
-                    <img src={cart.image} alt="image" />
+                    <img src={`http://localhost:1337${cart.image}`} alt="image" />
                 </div>
                 <div className="item-info-wrapper">
                     <div className="item-info">
