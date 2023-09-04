@@ -22,7 +22,7 @@ function CartItem({ cart }) {
                             <span className='quantity'> {cart.quantity} </span>
                             <span className='btn increment' onClick={() => disPatch(addToCart(cart))}>+</span>
                         </div>
-                        <p className="total-price">Subtotal : $ {cart.quantity * cart.price}</p>
+                        <p className="total-price">Subtotal : ₹ {cart.quantity * cart.price}</p>
                     </div>
                     <div className="item-remove">
                         <AiOutlineClose />
