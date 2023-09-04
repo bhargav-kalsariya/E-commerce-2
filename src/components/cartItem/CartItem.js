@@ -16,7 +16,7 @@ function CartItem({ cart }) {
                 <div className="item-info-wrapper">
                     <div className="item-info">
                         <p className="title">{cart.title}</p>
-                        <div className="price">$ {cart.price}</div>
+                        <div className="price">₹ {cart.price}</div>
                         <div className="quantity-selector">
                             <span className='btn decrement' onClick={() => disPatch(removeFromCart(cart))}>-</span>
                             <span className='quantity'> {cart.quantity} </span>

@@ -16,7 +16,7 @@ function Product({ product }) {
                 <div className="product-info">
                     <div className="title">{product?.attributes?.title}</div>
                     <div className="price">
-                        ${product?.attributes?.price}</div>
+                    ₹ {product?.attributes?.price}</div>
                 </div>
             </div>
         </div>

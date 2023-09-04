@@ -42,7 +42,7 @@ function ProductDetail() {
                         <h1 className="heading">
                             {product?.attributes.title}
                         </h1>
-                        <h3 className="price">${product?.attributes?.price}</h3>
+                        <h3 className="price">₹ {product?.attributes?.price}</h3>
                         <p className="description">
                             {product?.attributes?.desc}
                         </p>
