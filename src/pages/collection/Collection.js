@@ -23,8 +23,11 @@ function Collection() {
 
     const [sortBy, setSortBy] = useState(sortOptions[0].sort);
 
+    const url = params.categoryId ? `/products?populate=image&filters[category][key][$eq]=${params.categoryId}&sort=${sortBy}`
+        : `/products?populate=image&sort=${sortBy}`
+
     async function fetchProducts() {
-        const products = await axiosClient.get(`/products?populate=image&filters[category][key][$eq]=${params.categoryId}&sort=${sortBy}`);
+        const products = await axiosClient.get(url);
         setProducts(products.data.data);
     }
 
