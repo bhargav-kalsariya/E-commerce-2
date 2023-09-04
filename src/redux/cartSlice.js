@@ -14,6 +14,7 @@ const cartSlice = createSlice({
                 image: product.image.data.attributes.url,
                 key: product.key
             } : action.payload;
+            curItem.image = `https://localhost:1337${product.image.data.attributes.url}`
             const index = state.cart.findIndex(item => item.key === curItem.key);
             if (index === -1) {
                 state.cart.push({ ...curItem, quantity: 1 });
