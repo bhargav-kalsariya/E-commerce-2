@@ -35,7 +35,7 @@ function ProductDetail() {
                 <div className="product-layout">
                     <div className="product-img center">
                         <img
-                            src={`http://localhost:1337${product?.attributes?.image.data.attributes.url}`}
+                            src={`https://stripe-server-hva23.ondigitalocean.app${product?.attributes?.image.data.attributes.url}`}
                             alt="product img" />
                     </div>
                     <div className="product-info">
