@@ -11,7 +11,7 @@ function CartItem({ cart }) {
         <>
             <div className="CartItem">
                 <div className='item-img'>
-                    <img src={`https://stripe-server-hva23.ondigitalocean.app/#${cart.image}`} alt="image" />
+                    <img src={cart.image} alt="image" />
                 </div>
                 <div className="item-info-wrapper">
                     <div className="item-info">

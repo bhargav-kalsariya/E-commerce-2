@@ -10,7 +10,7 @@ function Product({ product }) {
             <div className="product-container">
                 <div className="product-img">
                     <div className="img-container">
-                        <img src={`https://stripe-server-hva23.ondigitalocean.app/#${product?.attributes?.image.data.attributes.url}`} alt={product?.attributes.title} id='imag' />
+                        <img src={product?.attributes?.image.data.attributes.url} alt={product?.attributes.title} id='imag' />
                     </div>
                 </div>
                 <div className="product-info">
