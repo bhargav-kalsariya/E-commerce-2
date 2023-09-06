@@ -23,7 +23,7 @@ function Cart({ onClose }) {
         });
         const stripe = await stripePromise
         await stripe.redirectToCheckout({
-            sessionId: response.data.stripeId
+            sessionId: response.data.strapid
         })
     }
 
