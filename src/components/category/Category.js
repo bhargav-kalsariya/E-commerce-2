@@ -12,6 +12,6 @@ function Category({ category }) {
             </div>
         </div>
     )
-}
+};
 
 export default Category;
