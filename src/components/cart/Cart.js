@@ -21,7 +21,6 @@ function Cart({ onClose }) {
         const response = await axiosClient.post('/orders', {
             products: cart
         });
-        console.log('response', response)
         const stripe = await stripePromise
         await stripe.redirectToCheckout({
             sessionId: response.data.stripeId
