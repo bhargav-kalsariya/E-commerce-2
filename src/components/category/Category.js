@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 function Category({ category }) {
     const navigate = useNavigate();
-    console.log('category', category)
     return (
         <div className='Category' style={{ backgroundImage: `url(${category.attributes.image.data.attributes.url})` }} onClick={() => navigate(`category/${category.attributes.key}`)}>
             <div className="category-content center">
